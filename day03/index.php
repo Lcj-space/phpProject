@@ -1,5 +1,9 @@
 <?php
 include "conn.php";
+if (isset($_POST['sub'])) {
+    header('location:www.baidu.com');
+}
+
 ?>
 <meta charset="UTF-8">
 
@@ -34,12 +38,11 @@ include "conn.php";
         }
 
         .content {
-            width: 200px;
-            height: 100px;
+            width: 100%;
             color: antiquewhite;
             position: absolute;
-            top: 200px;
-            border: 1px solid;
+            top: 50px;
+            border: 1px solid black;
 
         }
 
@@ -60,12 +63,14 @@ include "conn.php";
             right: 0;
             background: lightsalmon;
         }
-        .article span{
+
+        .article span {
             display: block;
             text-align: center;
-            color:cyan;
+            color: cyan;
         }
-        .article h3{
+
+        .article h3 {
             display: block;
             text-align: center;
         }
@@ -74,8 +79,19 @@ include "conn.php";
 <body>
 <div id="container">
     <div class="header">
-        <h3>:已登录</h3>
-        <div class="select"><input type="text"><input type="submit" value="搜索"></div>
+        <h3><?php
+            $uid = $_COOKIE['id'];
+            $sql = "select * from user where uid='$uid'";
+            $query = mysqli_query($link, $sql);
+            $sr = mysqli_fetch_array($query);
+            echo $sr['uname'] . "已登录";
+            ?></h3>
+        <span><a href="login.php">注销<?php
+                setcookie('id',time()-3600);
+                ?></a></span>
+        <form action="index.php" method="post">
+            <div class="select"><input type="text"><input type="submit" value="搜索" name="sub"></div>
+        </form>
     </div>
     <div class="content">
         <?php
@@ -85,7 +101,8 @@ include "conn.php";
 
         while ($sr = mysqli_fetch_array($query)) {
             ?>
-            <span><?php echo $sr['title'] ?></span><br/>
+            <span><?php echo $sr['title'] ?>|<a href="">修改</a>|<a href="">删除</a></span>
+            <span>时间 <?php echo $sr['time'] ?></span><br/>
             <?php
         }
         ?>
@@ -97,7 +114,7 @@ include "conn.php";
         $query = mysqli_query($link, $sql);
         while ($sv = mysqli_fetch_array($query)) {
             ?>
-            <span><?php echo $sv['cname']?></span>
+            <span><?php echo $sv['cname'] ?></span>
             <?php
         }
         ?>
