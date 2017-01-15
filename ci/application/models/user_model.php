@@ -23,5 +23,14 @@ class User_model extends CI_Model
         $query = $this->db->get_where('user', array('uname' => $name,'pass'=>$pass));
         return $query->row();
     }
+
+    public  function  get_allrows(){
+        $query = $this->db->get('blog');
+        return $query->result();
+//        echo "<pre>";
+//        var_dump($query);
+//        echo "</pre>";
+//        die();
+    }
 }
 ?>
