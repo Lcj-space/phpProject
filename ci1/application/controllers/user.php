@@ -55,8 +55,14 @@ class User extends CI_Controller
 //        var_dump($rs);
 //        die();
         if($rs){
+//            $arr['blog']=$rs;
 //            echo '登录成功';
-            $this->session->id='';
+//            $this->session->$rs->USER_ID;
+//            var_dump( $this->session->$rs['USER_ID']);
+//            die();
+            $arr=array('id'=>$rs->USER_ID,'name'=>$rs->NAME,'logged_in'=>TRUE,);
+            $this->session->set_userdate($arr);
+
             redirect('page/index_logined');
         }else{
             redirect('page/indexs');
