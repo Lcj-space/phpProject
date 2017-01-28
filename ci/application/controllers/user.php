@@ -48,11 +48,17 @@ class User extends CI_Controller
         $pass = $this->input->post('pass');
         $rs = $this->user_model->check($name, $pass);
         if ($rs) {
-            $_SESSION['id'] = $rs->uid;
-            $_SESSION['name'] = $rs->uname;
+//            $_SESSION['id'] = $rs->uid;
+//            $_SESSION['name'] = $rs->uname;
+            $arr=array(
+                'id'=>$rs->uid,
+                'name'=>$rs->uname,
+            );
+            $this->session->set_userdata($arr);
             redirect('user/home');
 //                 echo '登录成功';
         } else {
+            redirect('user/login');
             echo '重新登录';
         }
     }
@@ -60,9 +66,8 @@ class User extends CI_Controller
     public function home()
     {
         $rows=$this->user_model->get_allrows();
-
-        $this->load->view('home.php');
-
+        $arr['blog']=$rows;
+        $this->load->view('home.php','$arr');
     }
 
 }
