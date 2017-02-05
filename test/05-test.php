@@ -7,6 +7,9 @@
  */
 if (isset($_POST)){
     $num1 = $_POST["num1"];
+    $num2 = $_POST["num2"];
+    $sum  = $_POST["sum"];
+    $ysf  = $_POST["ysf"];
     echo $num1;
 }
 ?>
@@ -38,8 +41,9 @@ if (isset($_POST)){
                             <option value="/">/</option>
                         </select>
                     num2:<input type="text" name="num2">
-                   num1:<input type="text" name="sum">
+                   sum:<input type="text" name="sum">
             <input type="submit" name="sub" value="提交">
+            <input type="text" value="">
         </form>
 
 </div>
