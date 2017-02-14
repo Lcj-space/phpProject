@@ -13,7 +13,7 @@ if (isset($_POST['sub'])) {
             $sum = $num1 - $num2;
             break;
 
-        case '*':
+        case 'X':
             $sum = $num1 * $num2;
             break;
 
@@ -38,11 +38,7 @@ if (isset($_POST['sub'])) {
         #container {
             margin: 100px;
 
-
         }
-
-
-
     </style>
 </head>
 <body>
@@ -63,7 +59,7 @@ if (isset($_POST['sub'])) {
                         } ?>>-
                         </option>
 
-                        <option value="X"<?php if ($ysf == '*') {
+                        <option value="X"<?php if ($ysf == 'X') {
                             echo 'selected';
                         } ?>>*
                         </option>
@@ -79,14 +75,12 @@ if (isset($_POST['sub'])) {
             </tr>
             <tr>
                 <input class="result" type="text" value="结果为：<?php
-                if($num1=='a'||$num1=='%'){
-                    echo $num1."第一个不是数字";
-                }
-                else if($num2=='a'||$num2=='%'){
-                    echo $num2."第二个不是数字";
-                }else
-                echo $num1.'*'.$num2.'='.$sum ;
-
+                if ($num1 == 'a' || $num1 == '%') {
+                    echo $num1 . "第一个不是数字";
+                } else if ($num2 == 'a' || $num2 == '%') {
+                    echo $num2 . "第二个不是数字";
+                } else
+                    echo   $sum;
                 ?>">
             </tr>
         </form>

@@ -4,11 +4,9 @@ if (isset($_POST['sub'])) {
     echo $grade;
     if ($grade >= '80' && $grade <= '100') {
         echo "<script>alert('你的成绩是优秀')</script>";
-    }
-    elseif ($grade>=60&& $grade<80){
+    } elseif ($grade >= 60 && $grade < 80) {
         echo "<script>alert('你的成绩是合格')</script>";
-    }
-    else {
+    } else {
         echo "<script>alert('你的成绩不合格')</script>";
     }
 }
